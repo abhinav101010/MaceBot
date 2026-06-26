@@ -1,19 +1,17 @@
 package net.katch0420.macebot.playerbot;
 
 import io.netty.channel.embedded.EmbeddedChannel;
-import net.minecraft.network.ClientConnection;
-import net.minecraft.network.NetworkSide;
-import net.minecraft.network.NetworkState;
-import net.minecraft.network.listener.PacketListener;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.PacketFlow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 
-public class PlayerBotConnection extends ClientConnection {
+public class PlayerBotConnection extends Connection {
 
-    public PlayerBotConnection(NetworkSide side) {
-        super(side);
+    public PlayerBotConnection(PacketFlow flow) {
+        super(flow);
     }
 
     private static final Logger log = LoggerFactory.getLogger(PlayerBotConnection.class);
@@ -22,8 +20,7 @@ public class PlayerBotConnection extends ClientConnection {
 
     {
         try {
-
-            channelField = ClientConnection.class.getDeclaredField("channel");
+            channelField = Connection.class.getDeclaredField("channel");
             channelField.setAccessible(true);
             channelField.set(this, embeddedChannel);
         } catch (Exception e) {
@@ -33,17 +30,5 @@ public class PlayerBotConnection extends ClientConnection {
 
     @Override
     public void handleDisconnection() {
-    }
-
-    @Override
-    public void setInitialPacketListener(PacketListener packetListener) {
-    }
-
-    @Override
-    public void tryDisableAutoRead() {
-    }
-
-    @Override
-    public <T extends PacketListener> void transitionInbound(NetworkState<T> state, T packetListener) {
     }
 }

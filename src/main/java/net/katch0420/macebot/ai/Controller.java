@@ -31,7 +31,7 @@ public class Controller {
         if(delayBetweenActions > 0) delayBetweenActions--;
         if(difficulty == Difficulty.NPC){
             action = Action.NONE;
-            if(!actionManager.nearestPlayerIsNull) actionManager.lookAt(actionManager.nearestPlayer.getCameraPosVec(0.5f));
+            if(!actionManager.nearestPlayerIsNull) actionManager.lookAt(actionManager.nearestPlayer.getEyePosition(0.5f));
             return;
         }
         updateProbabilityMap();
@@ -91,12 +91,12 @@ public class Controller {
     private void checkForEating(){
         if(!actionManager.nearestPlayerIsNull){
             if(!(actionManager.nearestPlayer.getHealth() < actionManager.player.getHealth())){
-                if(actionManager.player.getHealth() < 10 || actionManager.player.getHungerManager().getFoodLevel() < 15){
+                if(actionManager.player.getHealth() < 10 || actionManager.player.getFoodData().getFoodLevel() < 15){
                     action = Action.EAT;
                 }
             }
         }
-        if(actionManager.player.getHealth() < 4 || actionManager.player.getHungerManager().getFoodLevel() < 7){
+        if(actionManager.player.getHealth() < 4 || actionManager.player.getFoodData().getFoodLevel() < 7){
             action = Action.EAT;
         }
     }

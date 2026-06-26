@@ -1,11 +1,11 @@
 package net.katch0420.macebot.utils;
 
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 
 public class Colors {
-    public static Formatting BaseColor = Formatting.WHITE;
-    public static Formatting ComponentColor = Formatting.GRAY;
-    public static Formatting TrueColor = Formatting.GREEN;
-    public static Formatting FalseColor = Formatting.RED;
-    public static Formatting WarningColor = Formatting.YELLOW;
+    public static ChatFormatting BaseColor = ChatFormatting.WHITE;
+    public static ChatFormatting ComponentColor = ChatFormatting.GRAY;
+    public static ChatFormatting TrueColor = ChatFormatting.GREEN;
+    public static ChatFormatting FalseColor = ChatFormatting.RED;
+    public static ChatFormatting WarningColor = ChatFormatting.YELLOW;
 }

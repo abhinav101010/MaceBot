@@ -1,39 +1,36 @@
 package net.katch0420.macebot.playerbot;
 
-import net.minecraft.network.ClientConnection;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.s2c.play.PositionFlag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ConnectedClientData;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableTextContent;
+import net.minecraft.server.network.CommonListenerCookie;
+import net.minecraft.server.network.ServerGamePacketListenerImpl;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 
-import java.util.Objects;
-import java.util.Set;
-
-public class PlayerBotNetHandler extends ServerPlayNetworkHandler {
-    public PlayerBotNetHandler(MinecraftServer server, ClientConnection connection, ServerPlayerEntity serverPlayer, ConnectedClientData clientData) {
-        super(server, connection, serverPlayer, clientData);
+public class PlayerBotNetHandler extends ServerGamePacketListenerImpl {
+    public PlayerBotNetHandler(MinecraftServer server, Connection connection, ServerPlayer serverPlayer, CommonListenerCookie cookie) {
+        super(server, connection, serverPlayer, cookie);
     }
 
     @Override
-    public void sendPacket(Packet<?> packet) {
-        super.sendPacket(packet);
+    public void send(Packet<?> packet) {
+        super.send(packet);
     }
 
     @Override
-    public void disconnect(Text reason) {
+    public void disconnect(Component reason) {
         super.disconnect(reason);
-        if (reason.getContent() instanceof TranslatableTextContent text && (text.getKey().equals("multiplayer.disconnect.idling") || text.getKey().equals("multiplayer.disconnect.duplicate_login")))
+        if (reason.getContents() instanceof TranslatableContents text && (text.getKey().equals("multiplayer.disconnect.idling") || text.getKey().equals("multiplayer.disconnect.duplicate_login")))
         {
-            player.kill();
+            player.kill((ServerLevel) player.level());
         }
     }
 
     @Override
-    public void requestTeleport(double x, double y, double z, float yaw, float pitch) {
-        super.requestTeleport(x, y, z, yaw, pitch);
+    public void teleport(double x, double y, double z, float yaw, float pitch) {
+        super.teleport(x, y, z, yaw, pitch);
     }
 }

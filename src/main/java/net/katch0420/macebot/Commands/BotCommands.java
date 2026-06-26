@@ -10,27 +10,29 @@ import net.katch0420.macebot.playerbot.PlayerBot;
 import net.katch0420.macebot.playerbot.PlayerBotSettings;
 import net.katch0420.macebot.utils.Colors;
 import net.katch0420.macebot.utils.Messenger;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.util.Formatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.ChatFormatting;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 
 import java.util.Objects;
 import java.util.function.Supplier;
 
 public class BotCommands {
 
-    private static ArgumentBuilder<ServerCommandSource, ?> toggle(String name, Supplier<Boolean> toggleAction, String label) {
-        return CommandManager.literal(name)
+    private static ArgumentBuilder<CommandSourceStack, ?> toggle(String name, Supplier<Boolean> toggleAction, String label) {
+        return Commands.literal(name)
                 .executes(context -> {
                     boolean bl = toggleAction.get();
                     Messenger.add(label + ": ", Colors.BaseColor);
                     Messenger.add(bl ? "enabled" : "disabled", bl ? Colors.TrueColor : Colors.FalseColor);
-                    Messenger.send(context.getSource().getPlayer(), true, true);
+                    Messenger.send(context.getSource().getPlayerOrException(), true, true);
                     return 1;
                 });
     }
 
-    private static int giveKit(CommandContext<ServerCommandSource> context, Kits.Kit kit, boolean unbreakable, Formatting color) {
+    private static int giveKit(CommandContext<CommandSourceStack> context, Kits.Kit kit, boolean unbreakable, ChatFormatting color) {
         Kits.giveKit(context.getSource(), kit, unbreakable, "MaceBot");
 
         Messenger.add("Gave ", Colors.BaseColor);
@@ -39,45 +41,56 @@ public class BotCommands {
         Messenger.add(" to ", Colors.BaseColor);
         Messenger.add("MaceBot", Colors.BaseColor);
 
-        Messenger.send(context.getSource().getPlayer(), true, true);
+        try {
+            Messenger.send(context.getSource().getPlayerOrException(), true, true);
+        } catch (Exception ignored) {}
         return 1;
     }
 
     public static void Register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, registrationEnvironment) ->
                 dispatcher.register(
-                        CommandManager.literal("macebot")
+                        Commands.literal("macebot")
                                 .then(
-                                        CommandManager.literal("bot")
+                                        Commands.literal("bot")
                                                 .then(
-                                                        CommandManager.literal("spawn")
+                                                        Commands.literal("spawn")
                                                                 .executes(context -> {
-                                                                    PlayerBot.createBot(context.getSource().getServer(), Objects.requireNonNull(context.getSource().getPlayer()).getServerWorld(), context.getSource().getPlayer().getBlockPos(), context.getSource());
+                                                                    try {
+                                                                        ServerPlayer botSource = context.getSource().getPlayerOrException();
+                                                                        PlayerBot.createBot(context.getSource().getServer(), (ServerLevel) botSource.level(), botSource.blockPosition(), context.getSource());
+                                                                    } catch (Exception ignored) {}
                                                                     Messenger.add("Spawning macebot", Colors.BaseColor);
-                                                                    Messenger.send(context.getSource().getPlayer(), true, true);
+                                                                    try {
+                                                                        Messenger.send(context.getSource().getPlayerOrException(), true, true);
+                                                                    } catch (Exception ignored) {}
                                                                     return 1;
                                                                 })
                                                 )
                                                 .then(
-                                                        CommandManager.literal("pause")
+                                                        Commands.literal("pause")
                                                                 .executes(context -> {
                                                                     PlayerBot.controller.pauseTheBot();
                                                                     Messenger.add("Paused the bot", Colors.BaseColor);
-                                                                    Messenger.send(context.getSource().getPlayer(), true, true);
+                                                                    try {
+                                                                        Messenger.send(context.getSource().getPlayerOrException(), true, true);
+                                                                    } catch (Exception ignored) {}
                                                                     return 1;
                                                                 })
                                                 )
                                                 .then(
-                                                        CommandManager.literal("play")
+                                                        Commands.literal("play")
                                                                 .executes(context -> {
                                                                     Controller.difficulty = Controller.Difficulty.EASY;
                                                                     Messenger.add("Resumed the bot", Colors.BaseColor);
-                                                                    Messenger.send(context.getSource().getPlayer(), true, true);
+                                                                    try {
+                                                                        Messenger.send(context.getSource().getPlayerOrException(), true, true);
+                                                                    } catch (Exception ignored) {}
                                                                     return 1;
                                                                 })
                                                 )
                                                 .then(
-                                                        CommandManager.literal("settings")
+                                                        Commands.literal("settings")
                                                                 .then(toggle("auto-refill", PlayerBotSettings::toggleAutoRefill, "Auto Refill"))
                                                                 .then(toggle("elytra", PlayerBotSettings::toggleElytra, "Elytra Ability"))
                                                                 .then(toggle("attack", PlayerBotSettings::toggleAttack, "Attack Ability"))
@@ -85,21 +98,21 @@ public class BotCommands {
                                                                 .then(toggle("crits", PlayerBotSettings::toggleCrits, "Crit Hits"))
                                                 )
                                                 .then(
-                                                        CommandManager.literal("mace-kit")
+                                                        Commands.literal("mace-kit")
                                                                 .then(
-                                                                        CommandManager.literal("netherite")
-                                                                                .executes(ctx -> giveKit(ctx, Kits.Kit.MACE_NETHERITE, true, Formatting.DARK_PURPLE))
+                                                                        Commands.literal("netherite")
+                                                                                .executes(ctx -> giveKit(ctx, Kits.Kit.MACE_NETHERITE, true, ChatFormatting.DARK_PURPLE))
                                                                                 .then(
-                                                                                        CommandManager.argument("unbreakable", BoolArgumentType.bool())
-                                                                                                .executes(ctx -> giveKit(ctx, Kits.Kit.MACE_NETHERITE, BoolArgumentType.getBool(ctx, "unbreakable"), Formatting.DARK_PURPLE))
+                                                                                        Commands.argument("unbreakable", BoolArgumentType.bool())
+                                                                                                .executes(ctx -> giveKit(ctx, Kits.Kit.MACE_NETHERITE, BoolArgumentType.getBool(ctx, "unbreakable"), ChatFormatting.DARK_PURPLE))
                                                                                 )
                                                                 )
                                                                 .then(
-                                                                        CommandManager.literal("diamond")
-                                                                                .executes(ctx -> giveKit(ctx, Kits.Kit.MACE_DIAMOND, true, Formatting.AQUA))
+                                                                        Commands.literal("diamond")
+                                                                                .executes(ctx -> giveKit(ctx, Kits.Kit.MACE_DIAMOND, true, ChatFormatting.AQUA))
                                                                                 .then(
-                                                                                        CommandManager.argument("unbreakable", BoolArgumentType.bool())
-                                                                                                .executes(ctx -> giveKit(ctx, Kits.Kit.MACE_DIAMOND, BoolArgumentType.getBool(ctx, "unbreakable"), Formatting.AQUA))
+                                                                                        Commands.argument("unbreakable", BoolArgumentType.bool())
+                                                                                                .executes(ctx -> giveKit(ctx, Kits.Kit.MACE_DIAMOND, BoolArgumentType.getBool(ctx, "unbreakable"), ChatFormatting.AQUA))
                                                                                 )
                                                                 )
                                                 )

@@ -1,0 +1,157 @@
+{
+  ".claude/settings.local.json": {
+    "mtime": 1782447350.204376,
+    "ast_hash": "791b93b9f75cbb3b5ed15c61b27b82a4",
+    "semantic_hash": "791b93b9f75cbb3b5ed15c61b27b82a4"
+  },
+  "build.gradle": {
+    "mtime": 1782446972.1290722,
+    "ast_hash": "ab93f0fbf4be313bafbabdbe32bc1628",
+    "semantic_hash": "ab93f0fbf4be313bafbabdbe32bc1628"
+  },
+  "gradlew": {
+    "mtime": 1782446972.1303484,
+    "ast_hash": "780b1d3e23a3b82154795f73df943a14",
+    "semantic_hash": "780b1d3e23a3b82154795f73df943a14"
+  },
+  "settings.gradle": {
+    "mtime": 1782446972.1305578,
+    "ast_hash": "ca916229de0c4363d915ad6923e874dd",
+    "semantic_hash": "ca916229de0c4363d915ad6923e874dd"
+  },
+  "src/main/java/net/katch0420/macebot/Commands/BotCommands.java": {
+    "mtime": 1782446972.1312988,
+    "ast_hash": "73c8e11a94693cc8e720ab5472b805ec",
+    "semantic_hash": "73c8e11a94693cc8e720ab5472b805ec"
+  },
+  "src/main/java/net/katch0420/macebot/Commands/PlayerCommands.java": {
+    "mtime": 1782446972.131434,
+    "ast_hash": "718414ad8fd43101c058c9cb409d9db1",
+    "semantic_hash": "718414ad8fd43101c058c9cb409d9db1"
+  },
+  "src/main/java/net/katch0420/macebot/Commands/SkinCommands.java": {
+    "mtime": 1782446972.1315467,
+    "ast_hash": "025b6958399eadacd6b817b7d2544eb1",
+    "semantic_hash": "025b6958399eadacd6b817b7d2544eb1"
+  },
+  "src/main/java/net/katch0420/macebot/MaceBot.java": {
+    "mtime": 1782446972.1316574,
+    "ast_hash": "d40c78aea96380e78ab9bf07e1d84c58",
+    "semantic_hash": "d40c78aea96380e78ab9bf07e1d84c58"
+  },
+  "src/main/java/net/katch0420/macebot/MaceBotClient.java": {
+    "mtime": 1782446972.1317456,
+    "ast_hash": "fdeb55a9113955b9fc39acff9ce84ead",
+    "semantic_hash": "fdeb55a9113955b9fc39acff9ce84ead"
+  },
+  "src/main/java/net/katch0420/macebot/MaceBotDataGenerator.java": {
+    "mtime": 1782446972.1318393,
+    "ast_hash": "7dc4f1c21d31c058d9ed9e0724f57d68",
+    "semantic_hash": "7dc4f1c21d31c058d9ed9e0724f57d68"
+  },
+  "src/main/java/net/katch0420/macebot/ai/ActionManager.java": {
+    "mtime": 1782446972.1320543,
+    "ast_hash": "21126ada3c41fb1ce6cd74d78b6defa5",
+    "semantic_hash": "21126ada3c41fb1ce6cd74d78b6defa5"
+  },
+  "src/main/java/net/katch0420/macebot/ai/Controller.java": {
+    "mtime": 1782446972.1321685,
+    "ast_hash": "460981820aecd183b7c2d27af3bdeb46",
+    "semantic_hash": "460981820aecd183b7c2d27af3bdeb46"
+  },
+  "src/main/java/net/katch0420/macebot/mixin/ItemStackMixin.java": {
+    "mtime": 1782446972.1323276,
+    "ast_hash": "d49f88c84795ab68243bd52a964ebe18",
+    "semantic_hash": "d49f88c84795ab68243bd52a964ebe18"
+  },
+  "src/main/java/net/katch0420/macebot/mixin/PlayerEntity_playerBotMixin.java": {
+    "mtime": 1782446972.1324267,
+    "ast_hash": "5fe508b8f3f3f9de75ebc9081bb0e158",
+    "semantic_hash": "5fe508b8f3f3f9de75ebc9081bb0e158"
+  },
+  "src/main/java/net/katch0420/macebot/mixin/PlayerManager_playerBotMixin.java": {
+    "mtime": 1782446972.1325226,
+    "ast_hash": "ae1f32ce7274a8cc5a9cab83ee8b311a",
+    "semantic_hash": "ae1f32ce7274a8cc5a9cab83ee8b311a"
+  },
+  "src/main/java/net/katch0420/macebot/player/Kits.java": {
+    "mtime": 1782446972.132728,
+    "ast_hash": "78f654436c11d811b9c4622f576965cb",
+    "semantic_hash": "78f654436c11d811b9c4622f576965cb"
+  },
+  "src/main/java/net/katch0420/macebot/player/PlayerSettings.java": {
+    "mtime": 1782446972.1328304,
+    "ast_hash": "dcd28290794e217ac43b119af9bd7253",
+    "semantic_hash": "dcd28290794e217ac43b119af9bd7253"
+  },
+  "src/main/java/net/katch0420/macebot/playerbot/PlayerBot.java": {
+    "mtime": 1782446972.1330254,
+    "ast_hash": "05c40d03401a24bc49617f88e8b3649d",
+    "semantic_hash": "05c40d03401a24bc49617f88e8b3649d"
+  },
+  "src/main/java/net/katch0420/macebot/playerbot/PlayerBotConnection.java": {
+    "mtime": 1782446972.133133,
+    "ast_hash": "ef1579936406abd79b1fd70b6d573bee",
+    "semantic_hash": "ef1579936406abd79b1fd70b6d573bee"
+  },
+  "src/main/java/net/katch0420/macebot/playerbot/PlayerBotNetHandler.java": {
+    "mtime": 1782446972.1332378,
+    "ast_hash": "ba7e0ca0f4c5f4b106bea7df03703bce",
+    "semantic_hash": "ba7e0ca0f4c5f4b106bea7df03703bce"
+  },
+  "src/main/java/net/katch0420/macebot/playerbot/PlayerBotSettings.java": {
+    "mtime": 1782446972.1333282,
+    "ast_hash": "c8bbe8dadc30218282501fe08595ac87",
+    "semantic_hash": "c8bbe8dadc30218282501fe08595ac87"
+  },
+  "src/main/java/net/katch0420/macebot/utils/Colors.java": {
+    "mtime": 1782446972.1334782,
+    "ast_hash": "d1f51e96056b5351e2a97a73d9560635",
+    "semantic_hash": "d1f51e96056b5351e2a97a73d9560635"
+  },
+  "src/main/java/net/katch0420/macebot/utils/Messenger.java": {
+    "mtime": 1782446972.1335723,
+    "ast_hash": "260cc36842ebf25520af6ba72b10f383",
+    "semantic_hash": "260cc36842ebf25520af6ba72b10f383"
+  },
+  "src/main/java/net/katch0420/macebot/utils/RayTracer.java": {
+    "mtime": 1782446972.1336656,
+    "ast_hash": "209ad3e24b8a515b1fcc6ce6bb4e82ef",
+    "semantic_hash": "209ad3e24b8a515b1fcc6ce6bb4e82ef"
+  },
+  "src/main/java/net/katch0420/macebot/utils/SkinManager.java": {
+    "mtime": 1782446972.1337752,
+    "ast_hash": "b2f77b4fb4aaef2e969832033f30f4b8",
+    "semantic_hash": "b2f77b4fb4aaef2e969832033f30f4b8"
+  },
+  "src/main/resources/fabric.mod.json": {
+    "mtime": 1782446972.1343954,
+    "ast_hash": "382983f8a1ea39c1c98943854ddb7553",
+    "semantic_hash": "382983f8a1ea39c1c98943854ddb7553"
+  },
+  "src/main/resources/macebot.mixins.json": {
+    "mtime": 1782446972.1344912,
+    "ast_hash": "19f5cef4615b945ae49be3d096d4d245",
+    "semantic_hash": "19f5cef4615b945ae49be3d096d4d245"
+  },
+  ".github/workflows/build.yml": {
+    "mtime": 1782446972.128583,
+    "ast_hash": "a02141ef425b0ee7f33be1280d8e145b",
+    "semantic_hash": "a02141ef425b0ee7f33be1280d8e145b"
+  },
+  "README.md": {
+    "mtime": 1782446972.128957,
+    "ast_hash": "ce8e15f8b650f908509a5a6d6079215e",
+    "semantic_hash": "ce8e15f8b650f908509a5a6d6079215e"
+  },
+  "src/main/resources/assets/macebot/icon.png": {
+    "mtime": 1782446972.134047,
+    "ast_hash": "795698d0acecf1fa3a82d464b6d55437",
+    "semantic_hash": "795698d0acecf1fa3a82d464b6d55437"
+  },
+  "src/main/resources/assets/macebot/textures/bot/skins/default-skin.png": {
+    "mtime": 1782446972.1342921,
+    "ast_hash": "5862f4d45e1bedeff90176bde15f3ecd",
+    "semantic_hash": "5862f4d45e1bedeff90176bde15f3ecd"
+  }
+}

@@ -1,8 +1,9 @@
 package net.katch0420.macebot.player;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -141,7 +142,7 @@ public class Kits {
         public abstract String displayName();
     }
 
-    public static void giveKit(ServerCommandSource source, Kit kit, boolean unbreakable,String name){
+    public static void giveKit(CommandSourceStack source, Kit kit, boolean unbreakable,String name){
         kit.execute();
         String unbreakableField;
         String unbreakingField;
@@ -160,15 +161,15 @@ public class Kits {
             }
         }
     }
-    private static void executeCmd(ServerCommandSource source, String input){
+    private static void executeCmd(CommandSourceStack source, String input){
         try {
-            source.getServer().getCommandManager().getDispatcher().execute(input,source.withSilent());
+            source.getServer().getCommands().getDispatcher().execute(input,source.withSuppressedOutput());
         } catch (CommandSyntaxException ignored) {
 
         }
     }
-    public static void refillItems(ServerPlayerEntity player){
-        giveKit(Objects.requireNonNull(player.getServer()).getCommandSource(),Kit.REFILL,false,player.getName().getString());
+    public static void refillItems(ServerPlayer player){
+        giveKit(Objects.requireNonNull(((ServerLevel) player.level()).getServer()).createCommandSourceStack(),Kit.REFILL,false,player.getName().getString());
     }
     public static class ItemData{
         String slot;

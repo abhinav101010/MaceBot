@@ -1,0 +1,4 @@
+/Users/abhinav/Documents/MyProjects/MyMinecraftMods/MaceBot/.github/workflows/build.yml
+/Users/abhinav/Documents/MyProjects/MyMinecraftMods/MaceBot/README.md
+/Users/abhinav/Documents/MyProjects/MyMinecraftMods/MaceBot/src/main/resources/assets/macebot/icon.png
+/Users/abhinav/Documents/MyProjects/MyMinecraftMods/MaceBot/src/main/resources/assets/macebot/textures/bot/skins/default-skin.png
